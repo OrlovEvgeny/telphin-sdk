@@ -8,7 +8,7 @@
 # Installation
 
 ```bash
-~ $ go get -u gopkg.in/OrlovEvgeny/telphin-sdk
+~ $ go get -u gopkg.in/OrlovEvgeny/telphin-sdk.v1
 ```
 
 Example Trusted auth
