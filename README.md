@@ -44,10 +44,10 @@ Example get Extension list
         fmt.Println(err)
     }
     
-	for _, e := range exten {
-		fmt.Printf("Extension id: %d, Extension name: %s \n", e.ID, e.Name)
+    for _, e := range exten {
+	fmt.Printf("Extension id: %d, Extension name: %s \n", e.ID, e.Name)
 
-	}
+    }
 ````
 
 Example download records
@@ -60,16 +60,16 @@ Example download records
     }
     
     t := time.Now()
-	rounded := time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, t.Location())
-	recordList, err := api.GetRecordList(exten[0].ID, rounded, time.Now(), "asc")
-	if err != nil {
-		fmt.Println(err)
-	}
+    rounded := time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, t.Location())
+    recordList, err := api.GetRecordList(exten[0].ID, rounded, time.Now(), "asc")
+    if err != nil {
+	fmt.Println(err)
+    }
 
-	fmt.Println(len(recordList))
-	for _, v := range recordList {
-		api.DownloadRecord(v.RecordUUID, "./downloads/")
-	}
+    fmt.Println(len(recordList))
+    for _, v := range recordList {
+	api.DownloadRecord(v.RecordUUID, "./downloads/")
+    }
 ````
 
 
