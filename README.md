@@ -65,8 +65,7 @@ Example download records
     if err != nil {
 	fmt.Println(err)
     }
-
-    fmt.Println(len(recordList))
+    
     for _, v := range recordList {
 	api.DownloadRecord(v.RecordUUID, "./downloads/")
     }
