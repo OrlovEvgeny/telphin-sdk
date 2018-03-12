@@ -15,7 +15,7 @@ Example Trusted auth
 
 ````golang
 func main() {
-    trusted := &telphin.Trusted {
+        trusted := &telphin.Trusted {
     		GrantType:    "client_credentials",
     		ClientID:     <your client_id>,
     		ClientSecret: <your client_secret>,
