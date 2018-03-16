@@ -52,7 +52,7 @@ type RecordList struct {
 }
 
 //
-func (oauth *OAuth) DownloadRecord(recordUUID string, path string) {
+func (oauth *OAuth) DownloadRecord(recordUUID string, path string) (string, error) {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", API+"/client/"+fmt.Sprint(oauth.User.ClientId)+"/record/"+fmt.Sprint(recordUUID), nil)
 	req.Header.Add("Authorization", "Bearer "+oauth.AccessToken)
@@ -73,16 +73,16 @@ func (oauth *OAuth) DownloadRecord(recordUUID string, path string) {
 	output, err := os.Create(path + fileName)
 	if err != nil {
 		fmt.Println("Error while creating", fileName, "-", err)
-		return
+		return "Error while creating", err
 	}
 	defer output.Close()
 	n, err := io.Copy(output, resp.Body)
 	if err != nil {
 		fmt.Println("Error while downloading", fileName, "-", err)
-		return
+		return "Error while downloading", err
 	}
-
 	fmt.Println(n, "bytes downloaded.")
+	return path + fileName, nil
 }
 
 //
