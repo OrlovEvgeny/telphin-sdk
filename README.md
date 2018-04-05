@@ -15,13 +15,15 @@ Example Trusted auth
 
 ````golang
 func main() {
+        //OAuth type
         trusted := &telphin.Trusted {
     		GrantType:    "client_credentials",
     		ClientID:     <your client_id>,
     		ClientSecret: <your client_secret>,
     	}
-    
-    	api, err := trusted.TrustedAuth()
+        
+        //New api
+    	api, err := telphin.NewAPI(trusted)
     	if err != nil {
     		fmt.Println(err)
     	}
