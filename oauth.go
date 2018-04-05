@@ -8,6 +8,10 @@ import (
 	"net/http"
 )
 
+type Authorizer interface {
+	Authorization() (*OAuth, error)
+}
+
 //
 type OAuth struct {
 	AccessToken string `json:"access_token"`
@@ -45,10 +49,16 @@ type User struct {
 	Id               uint32 `json:"id"`
 }
 
+
+
+func NewAPI(a Authorizer) (*OAuth, error) {
+	return a.Authorization()
+}
+
 //
 var oauth *OAuth
 
-func (p *PasswordAuth) PassowrdAuth() (*OAuth, error) {
+func (p *PasswordAuth) Authorization() (*OAuth, error) {
 	client := &http.Client{}
 	req, err := http.NewRequest("POST", API_URL+"/oauth/token", nil)
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
@@ -80,12 +90,12 @@ func (p *PasswordAuth) PassowrdAuth() (*OAuth, error) {
 	}
 	oauth.getUser()
 
-	go HeartBeat(p.PassowrdAuth)
+	go HeartBeat(p.Authorization)
 
 	return oauth, nil
 }
 
-func (t *Trusted) TrustedAuth() (*OAuth, error) {
+func (t *Trusted) Authorization() (*OAuth, error) {
 	client := &http.Client{}
 	req, err := http.NewRequest("POST", API_URL+"/oauth/token", nil)
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
@@ -115,7 +125,7 @@ func (t *Trusted) TrustedAuth() (*OAuth, error) {
 	}
 	oauth.getUser()
 
-	go HeartBeat(t.TrustedAuth)
+	go HeartBeat(t.Authorization)
 
 	return oauth, nil
 }
