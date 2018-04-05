@@ -75,6 +75,7 @@ Example download records
 
 
 **All methods:**
+* *[NewAPI](https://godoc.org/github.com/OrlovEvgeny/telphin-sdk#NewAPI)*
 * *[AddEvent](https://godoc.org/github.com/OrlovEvgeny/telphin-sdk#OAuth.AddEvent)*
 * *[DeleteEventAll](https://godoc.org/github.com/OrlovEvgeny/telphin-sdk#OAuth.DeleteEventAll)*
 * *[DeleteEventByID](https://godoc.org/github.com/OrlovEvgeny/telphin-sdk#OAuth.DeleteEventByID)*
